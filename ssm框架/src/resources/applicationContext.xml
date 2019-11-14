@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	 http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.2.xsd
+     http://www.springframework.org/schema/tx
+     http://www.springframework.org/schema/tx/spring-tx.xsd
+   ">
+
+    <!--引入database-->
+    <context:property-placeholder location="classpath:database.properties"></context:property-placeholder>
+    <!--开启包扫描-->
+    <context:component-scan base-package="cn.smbms"></context:component-scan>
+    <!--创建数据源-->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+<property name="driverClass" value="${driver}"></property>
+    <property name="jdbcUrl" value="${url}"></property>
+<property name="user" value="${user}"></property>
+        <property name="password" value="${password}"></property>
+
+    </bean>
+    <!--sqlsessionfactory-->
+    <bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+<property name="dataSource" ref="dataSource"></property>
+        <property name="typeAliasesPackage" value="cn.smbms.pojo"></property>
+<!--        <property name="mapperLocations" value="classpath:cn/smbms/dao/userMapper/*UserMapper.xml"></property>-->
+
+        <property name="mapperLocations" value="classpath:cn/smbms/dao/*Mapper/*Mapper.xml"></property>
+    </bean>
+    <!--在spring当中创建一个mapper的实例-->
+<!--    <bean id="userMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">-->
+        <!--mapper的接口-->
+<!--        <property name="mapperInterface" value="com.jbit.mapper.UserMapper"></property>-->
+<!--    <property name="sqlSessionFactory" ref="sessionFactory"></property>-->
+<!--    </bean>-->
+    <!--若有多个方法则要创建多个实例-->
+    <!--那么我们要使用mapper自动代理-->
+    <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!--开启扫描-->
+<!--        <property name="basePackage" value="cn.smbms.dao.userMapper"></property>-->
+        <property name="basePackage" value="cn.smbms.dao.*Mapper"></property>
+
+        <property name="sqlSessionFactoryBeanName" value="sessionFactory"></property>
+        
+    </bean>
+
+
+
+
+
+
+
+
+
+
+    <!--事务管理器-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+    <!--将事务切入到我们的service方法当中-->
+<!--    <tx:advice id="advice" transaction-manager="transactionManager">-->
+<!--        <tx:attributes>-->
+<!--            &lt;!&ndash;supports有事务就使用事务 没有事务就使用非事务&ndash;&gt;-->
+<!--            <tx:method name="find*" propagation="SUPPORTS" read-only="true"/>-->
+<!--            &lt;!&ndash;如果有事务 则使用当前事务 如果没有事务 他会创建一个新的事务&ndash;&gt;-->
+<!--            <tx:method name="update*" propagation="REQUIRED" ></tx:method>-->
+<!--        </tx:attributes>-->
+<!--    </tx:advice>-->
+
+<!--    <aop:config>-->
+<!--        &lt;!&ndash;切点&ndash;&gt;-->
+<!--        <aop:pointcut id="mycut" expression="execution(* com.jbit.service.*.*(..))"></aop:pointcut>-->
+
+<!--        <aop:advisor advice-ref="advice" pointcut-ref="mycut"></aop:advisor>-->
+<!--    </aop:config>-->
+
+
+
+    <!--2使用注解简化事务-->
+    <tx:annotation-driven transaction-manager="transactionManager"></tx:annotation-driven>
+</beans>
