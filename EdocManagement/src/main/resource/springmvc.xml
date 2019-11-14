@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+                         http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context-4.3.xsd
+                        http://www.springframework.org/schema/mvc
+                        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+    <!--启用spring的一些annotation -->
+    <context:annotation-config/>
+    <!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 -->
+    <context:component-scan base-package="cn.airqualty.controll" use-default-filters="false">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <context:component-scan base-package="cn.airqualty"></context:component-scan>
+    <mvc:annotation-driven></mvc:annotation-driven>
+    <!--多视图处理器-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!-- <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+         <property name="contentType" value="text/html"/>
+         <property name="viewNames" value="backend*"></property>-->
+        <property name="prefix" value="/WEB-INF/jsp/"></property>
+        <property name="suffix" value=".jsp"></property>
+        <property name="order" value="0"></property>
+    </bean>
+    <!--
+        <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+           &lt;!&ndash; <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+            <property name="contentType" value="text/html"/>&ndash;&gt;
+            <property name="viewNames" value="backend*"></property>
+            <property name="prefix" value="/WEB-INF/jsp/backend/"></property>
+            <property name="suffix" value=".jsp"></property>
+            <property name="order" value="1"></property>
+        </bean>
+
+        <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+            &lt;!&ndash;  <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+              <property name="contentType" value="text/html"/>&ndash;&gt;
+            <property name="viewNames" value="developer*"></property>
+            <property name="prefix" value="/WEB-INF/jsp/developer/"></property>
+            <property name="suffix" value=".jsp"></property>
+            <property name="order" value="2"></property>
+        </bean>-->
+
+    <!--将静态资源解放出来-->
+    <!-- <mvc:resources mapping="/statics/fonts/**" location="**/fonts/"></mvc:resources>-->
+    <!--<mvc:resources mapping="/static/**" location="/static/"></mvc:resources>-->
+    <!--<mvc:resources mapping="/statics/images/**" location="**/images/"></mvc:resources>
+    <mvc:resources mapping="/statics/js/**" location="**/js/"></mvc:resources>
+    <mvc:resources mapping="/statics/localcss/**" location="**/localcss/"></mvc:resources>
+    <mvc:resources mapping="/statics/localjs/**" location="**/localjs/"></mvc:resources>-->
+    <!-- <mvc:resources mapping="/statics/uploadfiles/**" location="**/uploadfiles/"></mvc:resources>
+ -->
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>application/json;charset=UTF-8</value>
+                        <value>*/*;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+    <!--拦截器-->
+    <!--<mvc:interceptors>
+            <mvc:interceptor>
+                <mvc:mapping path="/**"/>
+                <bean class="cn.smbms.interceptor.SysIntercepto"/>
+            </mvc:interceptor>
+        </mvc:interceptors>-->
+</beans>
