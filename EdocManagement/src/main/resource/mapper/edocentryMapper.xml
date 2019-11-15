@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.Management.dao.edocentryMapper">
+    <select id="centrylist" resultType="cn.Management.entity.edocentry">
+        SELECT * FROM `edoc_entry` WHERE categoryId = 2;
+    </select>
+
+    <insert id="addcentry">
+        INSERT INTO `edoc_entry`
+        VALUES(#{id},#{categoryId},#{title},#{summary},#{uploaduser},#{createdate});
+    </insert>
+
+    <delete id="delete">
+        DELETE FROM `edoc_entry` WHERE id=#{id};
+    </delete>
+
+    <update id="update">
+        UPDATE `edoc_entry`
+        SET id=#{id},`categoryId`=#{categoryId},`title`=#{title},
+        `summary`=#{summary},`uploaduser`=#{uploaduser},
+        `createdate`=createdate
+        WHERE id=#{id};
+    </update>
+</mapper>

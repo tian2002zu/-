@@ -12,11 +12,11 @@
     <!--启用spring的一些annotation -->
     <context:annotation-config/>
     <!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 -->
-    <context:component-scan base-package="cn.airqualty.controll" use-default-filters="false">
+    <context:component-scan base-package="cn.Management.controll" use-default-filters="false">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
-    <context:component-scan base-package="cn.airqualty"></context:component-scan>
+    <context:component-scan base-package="cn.Management"></context:component-scan>
     <mvc:annotation-driven></mvc:annotation-driven>
     <!--多视图处理器-->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

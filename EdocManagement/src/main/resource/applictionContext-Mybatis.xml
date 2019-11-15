@@ -19,7 +19,7 @@
     -->  <!--开启配置文件的扫描-->
     <context:property-placeholder location="classpath:database.properties"></context:property-placeholder>
     <!--开启包扫描-->
-    <context:component-scan base-package="org.air.service"></context:component-scan>
+    <context:component-scan base-package="cn.Management.service"></context:component-scan>
     <!--数据库连接池-->
     <!--c3p0是 一个库 是一个开源的jdbc连接池 他扩展了传
     统的jdbc数据库连接池 并且支持jdbc3规范和jdbc2的标准扩展-->
@@ -42,7 +42,7 @@
         <!--引入数据源主键 连接数据库连接池-->
         <property name="dataSource" ref="dataSoure"></property>
         <!--开启配置类的别名-->
-        <property name="typeAliasesPackage" value="org.air.pojo"></property>
+        <property name="typeAliasesPackage" value="cn.Management.pojo"></property>
 
         <property name="configLocation" value="classpath:mybatis-conifg.xml"></property>
         <!--配置Sql映射文件-->
@@ -54,7 +54,7 @@
     <!--针对mapper自动代理-->
     <bean  class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <!--开启扫描-->
-        <property name="basePackage" value="org.air.dao"></property>
+        <property name="basePackage" value="cn.Management.dao"></property>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFaction"></property>
     </bean>
     <!--定义事务管理器-->
@@ -71,7 +71,7 @@
         <property name="dataSource" ref="dataSoure"></property>
     </bean>
 
-    <bean class="cn.Management.tools.InitDataListener"/>
+   <!-- <bean class="cn.Management.tools.InitDataListener"/>-->
     <!--下面的代码要抄的   &lt;!&ndash; 是注释   &ndash;&gt;-->
     <!--  &lt;!&ndash;将事务切入到我们的service方法中&ndash;&gt;
    <tx:advice id="advice" transaction-manager="transactionManager">
