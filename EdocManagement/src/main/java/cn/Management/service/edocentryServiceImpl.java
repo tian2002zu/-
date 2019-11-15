@@ -14,15 +14,16 @@ public class edocentryServiceImpl implements edocentryService{
     private edocentryMapper edocentrymapper;
 
     @Override
-    public List<edocentryMapper> centrylist(Integer categoryId) {
-        List<edocentryMapper> centrylist = edocentrymapper.centrylist(categoryId);
+    public List<edocentry> centrylist(Integer categoryId) {
+        List<edocentry> centrylist = edocentrymapper.centrylist(categoryId);
         return centrylist;
     }
 
+
     @Override
-    public Boolean addcentry(edocentryMapper edocentryMapper1) {
+    public Boolean addcentry(edocentry edocentry) {
         boolean flag = false;
-        Integer check= edocentrymapper.addcentry(edocentryMapper1);
+        Integer check= edocentrymapper.addcentry(edocentry);
         if(check>0){
             flag=true;
         }
@@ -40,9 +41,9 @@ public class edocentryServiceImpl implements edocentryService{
     }
 
     @Override
-    public Boolean update(edocentryMapper edocentryMapper1) {
+    public Boolean update(edocentry edocentry) {
         boolean flag = false;
-        Integer check= edocentrymapper.update(edocentryMapper1);
+        Integer check= edocentrymapper.update(edocentry);
         if(check>0){
             flag=true;
         }
