@@ -27,10 +27,9 @@
         <property name="suffix" value=".jsp"></property>
         <property name="order" value="0"></property>
     </bean>
-    <!--
         <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-           &lt;!&ndash; <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
-            <property name="contentType" value="text/html"/>&ndash;&gt;
+           <!-- <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+            <property name="contentType" value="text/html"/>-->
             <property name="viewNames" value="backend*"></property>
             <property name="prefix" value="/WEB-INF/jsp/backend/"></property>
             <property name="suffix" value=".jsp"></property>
@@ -38,23 +37,22 @@
         </bean>
 
         <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-            &lt;!&ndash;  <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
-              <property name="contentType" value="text/html"/>&ndash;&gt;
+            <!--  <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+              <property name="contentType" value="text/html"/>-->
             <property name="viewNames" value="developer*"></property>
             <property name="prefix" value="/WEB-INF/jsp/developer/"></property>
             <property name="suffix" value=".jsp"></property>
             <property name="order" value="2"></property>
-        </bean>-->
+        </bean>
 
     <!--将静态资源解放出来-->
-    <!-- <mvc:resources mapping="/statics/fonts/**" location="**/fonts/"></mvc:resources>-->
-    <!--<mvc:resources mapping="/static/**" location="/static/"></mvc:resources>-->
-    <!--<mvc:resources mapping="/statics/images/**" location="**/images/"></mvc:resources>
+    <!-- <mvc:resources mapping="/statics/fonts/**" location="**/fonts/"></mvc:resources>
+    <mvc:resources mapping="/static/**" location="/static/"></mvc:resources>
+    <mvc:resources mapping="/statics/images/**" location="**/images/"></mvc:resources>-->
     <mvc:resources mapping="/statics/js/**" location="**/js/"></mvc:resources>
-    <mvc:resources mapping="/statics/localcss/**" location="**/localcss/"></mvc:resources>
-    <mvc:resources mapping="/statics/localjs/**" location="**/localjs/"></mvc:resources>-->
-    <!-- <mvc:resources mapping="/statics/uploadfiles/**" location="**/uploadfiles/"></mvc:resources>
- -->
+  <!--  <mvc:resources mapping="/statics/localcss/**" location="**/localcss/"></mvc:resources>
+    <mvc:resources mapping="/statics/localjs/**" location="**/localjs/"></mvc:resources>
+     <mvc:resources mapping="/statics/uploadfiles/**" location="**/uploadfiles/"></mvc:resources>-->
     <mvc:annotation-driven>
         <mvc:message-converters>
             <bean class="org.springframework.http.converter.StringHttpMessageConverter">
