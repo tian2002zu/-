@@ -32,7 +32,7 @@
     <bean id="dataSoure" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <property name="driverClass" value="${driver}"></property>
         <property name="jdbcUrl" value="${url}"></property>
-        <property name="user" value="scott"></property>
+        <property name="user" value="${user}"></property>
         <property name="password" value="${password}"></property>
     </bean>
     <!--配置SQlSessionFactionBean-->
@@ -50,6 +50,8 @@
             <value>classpath:mapper/*Mapper.xml</value>
         </property>
     </bean>
+    <!--加载工具类-->
+    <bean class="cn.Management.tools.InitDataListener"/>
     <!--扫描业务层-->
     <!--针对mapper自动代理-->
     <bean  class="org.mybatis.spring.mapper.MapperScannerConfigurer">

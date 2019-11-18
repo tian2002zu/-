@@ -49,7 +49,7 @@
     <!-- <mvc:resources mapping="/statics/fonts/**" location="**/fonts/"></mvc:resources>
     <mvc:resources mapping="/static/**" location="/static/"></mvc:resources>
     <mvc:resources mapping="/statics/images/**" location="**/images/"></mvc:resources>-->
-    <mvc:resources mapping="/statics/js/**" location="**/js/"></mvc:resources>
+    <mvc:resources mapping="/statics/**" location="/statics/"></mvc:resources>
   <!--  <mvc:resources mapping="/statics/localcss/**" location="**/localcss/"></mvc:resources>
     <mvc:resources mapping="/statics/localjs/**" location="**/localjs/"></mvc:resources>
      <mvc:resources mapping="/statics/uploadfiles/**" location="**/uploadfiles/"></mvc:resources>-->

@@ -6,6 +6,7 @@
 <head>
     <title>新增电子文档</title>
 </head>
+<script src="${pageContext.request.contextPath}/statics/js/jquery-1.8.3.js"></script>
 <script>
     $(function () {
         $("#myform").submit(function () {

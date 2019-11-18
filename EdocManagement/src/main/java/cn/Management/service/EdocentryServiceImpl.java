@@ -1,27 +1,27 @@
 package cn.Management.service;
 
-import cn.Management.dao.edocentryMapper;
+import cn.Management.dao.EdocentryMapper;
 import org.springframework.stereotype.Service;
-import cn.Management.entity.edocentry;
+import cn.Management.entity.Edocentry;
 
 import javax.annotation.Resource;
 import java.util.List;
 
 @Service
-public class edocentryServiceImpl implements edocentryService{
+public class EdocentryServiceImpl implements EdocentryService {
 
     @Resource
-    private edocentryMapper edocentrymapper;
+    private EdocentryMapper edocentrymapper;
 
     @Override
-    public List<edocentry> centrylist(Integer categoryId) {
-        List<edocentry> centrylist = edocentrymapper.centrylist(categoryId);
+    public List<Edocentry> centrylist(Integer categoryId) {
+        List<Edocentry> centrylist = edocentrymapper.centrylist(categoryId);
         return centrylist;
     }
 
 
     @Override
-    public Boolean addcentry(edocentry edocentry) {
+    public Boolean addcentry(Edocentry edocentry) {
         boolean flag = false;
         Integer check= edocentrymapper.addcentry(edocentry);
         if(check>0){
@@ -41,7 +41,7 @@ public class edocentryServiceImpl implements edocentryService{
     }
 
     @Override
-    public Boolean update(edocentry edocentry) {
+    public Boolean update(Edocentry edocentry) {
         boolean flag = false;
         Integer check= edocentrymapper.update(edocentry);
         if(check>0){

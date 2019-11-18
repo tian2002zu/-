@@ -4,16 +4,16 @@ import org.apache.ibatis.annotations.Param;
 import cn.Management.entity.*;
 import java.util.List;
 
-public interface edocentryMapper {
+public interface EdocentryMapper {
     //通过分类查询
-    List<edocentry> centrylist(@Param("categoryId") Integer categoryId);
+    List<Edocentry> centrylist(@Param("categoryId") Integer categoryId);
 
     //新增
-    Integer addcentry(edocentry edocentry);
+    Integer addcentry(Edocentry edocentry);
 
     //删除
     Integer delete(@Param("id")Integer id);
 
     //修改
-    Integer update(edocentry edocentry);
+    Integer update(Edocentry edocentry);
 }
