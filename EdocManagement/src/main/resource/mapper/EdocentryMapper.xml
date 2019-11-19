@@ -13,7 +13,7 @@
 
     <insert id="addcentry">
         INSERT INTO `edoc_entry`
-        VALUES(#{id},#{categoryId},#{title},#{summary},#{uploaduser},#{createdate});
+        VALUES(null,#{categoryId},#{title},#{summary},#{uploaduser},#{createdate});
     </insert>
 
     <delete id="delete">

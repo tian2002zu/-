@@ -42,12 +42,10 @@ public class EdocentryServiceImpl implements EdocentryService {
 
     @Override
     public Boolean update(Edocentry edocentry) {
-        boolean flag = false;
-        Integer check= edocentrymapper.update(edocentry);
-        if(check>0){
-            flag=true;
+        if (edocentrymapper.update(edocentry)>0){
+            return true;
         }
-        return flag;
+        return false;
     }
 
 }

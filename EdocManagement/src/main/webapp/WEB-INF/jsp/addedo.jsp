@@ -37,8 +37,8 @@
         });
     })
 </script>
-<div align="center">
-    <form method="post">
+<div align="center" id="myform">
+    <form action="${pageContext.request.contextPath}/edocentry/add" method="post">
         <table border="1px" cellspacing="0px" cellpadding="0px" width="500px">
             <tr>
                 <td colspan="2" align="center" style="padding: 10px;font-size: 25px">增加电子文档</td>
@@ -47,6 +47,16 @@
                 <td>文档名称<span style="width:20px">(*)</span></td>
                 <td><input type="text" name="title" id="title"/></td>
             </tr>
+            <tr>
+                <td>文档分类：</td>
+                <td>
+                    <select name="categoryId">
+                        <option value="">全部</option>
+                        <c:forEach var="cat" items="${categoryList}">
+                            <option value="${cat.id}">${cat.name}</option>
+                        </c:forEach>
+                    </select>
+                </td>
             <tr>
                 <td>文档摘要:</td>
                 <td>
@@ -62,7 +72,10 @@
             <td><input type="text" name="createdate" id="createdate"/>(yyyy-MM-dd)</td>
             </tr>
             <tr align="center">
-                <td><button type="submit">提交</button><button type="button" onclick="javascript:history.back(-1)">返回</button></td>
+                <td colspan="2">
+                    <input type="submit" value="提交"/>
+                    <input type="button" value="返回" onclick="javascript:history.back(-1)"/>
+                </td>
             </tr>
         </table>
     </form>
