@@ -48,4 +48,9 @@ public class EdocentryServiceImpl implements EdocentryService {
         return false;
     }
 
+    @Override
+    public Edocentry edocentry(Integer id) {
+        return edocentrymapper.edocentry(id);
+    }
+
 }

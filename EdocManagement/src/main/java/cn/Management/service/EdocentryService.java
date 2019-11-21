@@ -16,4 +16,7 @@ public interface EdocentryService {
 
     //修改
     Boolean update(Edocentry edocentry);
+
+    //修改頁面传值
+    Edocentry edocentry(Integer id);
 }

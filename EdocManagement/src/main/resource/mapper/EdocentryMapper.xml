@@ -21,10 +21,28 @@
     </delete>
 
     <update id="update">
-        UPDATE `edoc_entry`
-        SET id=#{id},`categoryId`=#{categoryId},`title`=#{title},
-        `summary`=#{summary},`uploaduser`=#{uploaduser},
-        `createdate`=createdate
-        WHERE id=#{id};
+        update edoc_entry set
+        <trim suffixOverrides="," suffix="where id=#{id}">
+            <if test="categoryId!=null">
+                categoryId=#{categoryId},
+            </if>
+            <if test="title!=null">
+                title=#{title},
+            </if>
+            <if test="summary!=null">
+                summary=#{summary},
+            </if>
+            <if test="uploaduser!=null">
+                uploaduser=#{uploaduser},
+            </if>
+            <if test="createDate!=null">
+                createDate=#{createDate},
+            </if>
+
+        </trim>
     </update>
+
+    <select id="edocentry" resultType="cn.Management.entity.Edocentry">
+           SELECT *FROM edoc_entry WHERE id=#{id}
+    </select>
 </mapper>

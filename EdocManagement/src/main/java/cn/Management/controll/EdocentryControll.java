@@ -80,23 +80,25 @@ public class EdocentryControll {
 
     //執行修改操作 成功返回列表頁面  失败 则不返回
     //打开修改
-   /* @RequestMapping(value = "/openupdate")
+    @RequestMapping(value = "/openupdate")
     public String openupdate(@RequestParam(value = "id", required = false) Integer id, Model model) {
+        System.out.println("执行1");
         //查询单个值
         Edocentry edocEntry = edocentryService.edocentry(id);
+        System.out.println("执行1"+edocEntry.toString());
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         //日期转换为字符串格式
 
-        edocEntry.setTime(simpleDateFormat.format(edocEntry.getCreateDate()));
+        edocEntry.setTime(simpleDateFormat.format(edocEntry.getCreatedate()));
         //查询对象的值
         model.addAttribute("edocEntry", edocEntry);
         //下拉框的值
-        List<EdocCategory> categoryList = categoryService.edoceCategorylist();
+        List<Edoccategory> categoryList = edoccategoryService.edoceCategorylist();
         model.addAttribute("categoryList", categoryList);
-        return "update";
-    }*/
+        return "updateedo";
+    }
 
-    @RequestMapping(value = "/update.html", method = RequestMethod.GET)
+    @RequestMapping(value = "/update"/*, method = RequestMethod.GET*/)
     public String update(Edocentry edo) {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         String s = "2011-07-09 ";
@@ -109,10 +111,10 @@ public class EdocentryControll {
          edo.setCreatedate(date);
         if (edocentryService.update(edo)) {
             System.out.println("修改成功");
-            return "index";
+            return "redirect:/edocentry/edoclist";
         }
         System.out.println("修改失败");
-        return "info";
+        return "updateedo";
     }
 
     //删除
@@ -121,7 +123,7 @@ public class EdocentryControll {
         System.out.println(id + "---------id");
         if (edocentryService.delete(id)) {
             System.out.println("刪除成功");
-            return "redirect:/edocEntry/edoclist";
+            return "redirect:/edocentry/edoclist";
         }
         System.out.println("删除失败");
         return "delete";

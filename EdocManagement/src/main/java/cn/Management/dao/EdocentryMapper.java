@@ -16,4 +16,7 @@ public interface EdocentryMapper {
 
     //修改
     Integer update(Edocentry edocentry);
+
+    //修改頁面传值
+    Edocentry edocentry(@Param("id")Integer id);
 }

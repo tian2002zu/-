@@ -6,38 +6,43 @@
 <head>
     <title>修改电子文档</title>
 </head>
-<script src="${pageContext.request.contextPath}/statics/js/jquery-1.8.3.js"></script>
-<script>
-    $(function () {
-
-    })
-</script>
 <div align="center">
-    <form method="post">
+    <form action="${pageContext.request.contextPath}/edocentry/update" method="post">
         <table border="1px" cellspacing="0px" cellpadding="0px" width="500px">
             <tr>
-                <td colspan="2" align="center" style="padding: 10px;font-size: 25px">增加电子文档</td>
+                <td colspan="2" align="center" style="padding: 10px;font-size: 25px">修改电子文档</td>
             </tr>
             <tr>
-                <td>文档名称<span style="width:20px">(*)</span></td>
-                <td><input type="text" name="title"/></td>
+                <td>文档编号</td>
+                <td><input type="hidden" value="${edocEntry.id}" name="id" /></td>
             </tr>
             <tr>
-                <td>文档分类:</td>
+                <td>文档名称<span style="color: red">(*)</span></td>
+                <td><input type="text" name="title" value="${edocEntry.title}"/></td>
+            </tr>
+            <tr>
+                <td>文档分类：</td>
                 <td>
-                    <textarea name="sumary" style="overflow-y: scroll;height: 50px;width: 300px"></textarea>
+                    <select name="categoryId">
+                        <c:forEach var="categoryList" items="${categoryList}">
+                        <option value="${categoryList.id}">${categoryList.name}</option>
+                        </c:forEach>
+                    </select>
                 </td>
             </tr>
             <tr>
                 <td>上传人</td>
-                <td><input type="text" name="summary"/></td>
+                <td><input type="text" name="uploaduser" value="${edocEntry.uploaduser}"/></td>
             </tr>
             <tr>
-                <td>上传时间(*)</td>
-                <td><input type="text" name="time"/>(yyyy-MM-dd)</td>
+                <td>上传时间<span style="color: red">(*)</span></td>
+                <td><input type="text" name="createdate" value="${edocEntry.createdate}"/>(yyyy-MM-dd)</td>
             </tr>
-            <tr align="center">
-                <td><input type="submit" name="tijiao" value="提交"/><input type="button" name="fanhui" value="返回"/></td>
+            <tr align="center" align="center">
+                <td>
+                <input type="submit" value="提交"/>
+                <input type="button" value="返回"  onclick="javascript:history.back(-1)" />
+                </td>
             </tr>
         </table>
     </form>
